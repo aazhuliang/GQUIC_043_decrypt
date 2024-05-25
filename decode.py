@@ -61,6 +61,6 @@ def GetDataForFile(file_path:str):
 
 if __name__ == "__main__":
 
-    format_data = GetDataForFile("./output.txt")
+    format_data = GetDataForFile("./out.txt")
 
     save_dict_array_to_excel(format_data, "./test.xlsx")
