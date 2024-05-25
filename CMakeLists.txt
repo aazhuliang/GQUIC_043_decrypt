@@ -2,7 +2,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.2)
 
 PROJECT(quiche)
 
-option(ENABLE_LINK_TCMALLOC "option for link tcmalloc" ON)
+option(ENABLE_LINK_TCMALLOC "option for link tcmalloc" OFF)
 
 SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g2 -ggdb")
 SET(BUILD_SHARED_LIBS OFF)
@@ -472,4 +472,45 @@ SET(SIMPLE_QUIC_SERVER_SRCS
 ADD_EXECUTABLE(simple_quic_server ${SIMPLE_QUIC_SERVER_SRCS} ${EPOLL_SERVER_SRC})
 TARGET_LINK_LIBRARIES(simple_quic_server -static-libstdc++
     quiche
+)
+
+include_directories(${PCAPPP_INCLUDE_DIRS})
+
+find_library(Pcappp libPcap++.a ${PCAPPP_LIBRARY_DIRS})
+find_library(Packetpp libPacket++.a ${PCAPPP_LIBRARY_DIRS})
+find_library(Commonpp libCommon++.a ${PCAPPP_LIBRARY_DIRS})
+find_library(pcap libpcap.a ${PCAPPP_LIBRARY_DIRS})
+
+SET(QUIC_DECRYPT_TEST
+    gquiche/quic/proto_test/config.h
+    gquiche/quic/proto_test/test_visitor.h
+    gquiche/quic/proto_test/hand_shake_visitor.h
+    gquiche/quic/proto_test/hand_shake_visitor.cc
+    gquiche/spdy/core/http2_frame_decoder_adapter.h
+    gquiche/quic/core/http/quic_header_list.h
+    gquiche/quic/proto_test/common_visitor.h
+    gquiche/quic/proto_test/common_visitor.cc
+    gquiche/quic/proto_test/packet_reader.h
+    gquiche/quic/proto_test/session.h
+    gquiche/quic/proto_test/session.cc
+    gquiche/quic/proto_test/server_session.h
+    gquiche/quic/proto_test/server_session.cc
+    gquiche/quic/proto_test/client_session.h
+    gquiche/quic/proto_test/client_session.cc
+    gquiche/quic/proto_test/SpdyFramerVisitor.h
+    gquiche/quic/proto_test/SpdyFramerVisitor.cc
+    gquiche/quic/proto_test/pcap_reader.h
+    gquiche/quic/proto_test/pcap_reader.cc
+    gquiche/quic/proto_test/main.cc
+)
+
+ADD_EXECUTABLE(quic_decrypt_test ${QUIC_DECRYPT_TEST})
+
+
+TARGET_LINK_LIBRARIES(quic_decrypt_test -static-libstdc++
+    quiche    
+    ${Pcappp} 
+    ${Packetpp} 
+    ${Commonpp}
+    ${pcap}
 )

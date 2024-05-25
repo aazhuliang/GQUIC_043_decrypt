@@ -1,0 +1,2 @@
+/usr/bin/ar qc libQuicCoreProto.a CMakeFiles/QuicCoreProto.dir/cached_network_parameters.pb.cc.o CMakeFiles/QuicCoreProto.dir/crypto_server_config.pb.cc.o CMakeFiles/QuicCoreProto.dir/source_address_token.pb.cc.o
+/usr/bin/ranlib libQuicCoreProto.a
