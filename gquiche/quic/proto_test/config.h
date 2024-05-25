@@ -10,7 +10,7 @@ namespace ProtoTest
 	constexpr const char* DIVERSIFICATION_NONCE = "84a6d6e4f13b9eee3ee359689b6577a9eb3f243aa921be261fb964ac561e1d2e";
 	constexpr int HEAD_STREAM_ID = 3;
 	constexpr const char* OUT_PATH = "./12321321/out.txt";
-	constexpr const char* IN_PCAP_PATH = "./dragon3.pcap";
+	constexpr const char* IN_PCAP_PATH = "../dragon3.pcap";
 	constexpr const char* PCAP_FILTER = "udp port 443";
 	constexpr bool IS_0RTT = true;
 	const std::array<std::string, 3> EXTERNAL_REJ_PACKETS{
