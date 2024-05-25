@@ -1,6 +1,6 @@
 # 介绍
 这是一个用于解密GQUIC协议Q043版本数据包的工具，基于[gquiche](https://github.com/bilibili/quiche)实现，解密数据包的部分在`gquiche/quic/proto_test`目录下。 
-该工具目前只是一个demo玩具，可能会存在或多或少的BUG。
+该工具目前只是一个demo玩具，可能会存在或多或少的BUG。详细请参考这篇介绍文章[一种对QUIC协议的抓包方案（基于某知名APP）](https://bbs.kanxue.com/thread-281892.htm)
 
 ## 环境准备  
 1.  安装下列依赖库
